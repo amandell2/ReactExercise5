@@ -1,6 +1,6 @@
 import {useState} from 'react';
 
-interface Pets{
+interface Pet{
     name: string;
     type: string;
     id: number
@@ -13,7 +13,7 @@ function ArraysEx(){
         setColors(prev => [...prev, color]);
     }
 
-    const [pets, setPets]=useState([
+    const [pets, setPets]=useState<Pet[]>([
         {name: "Nala", type: "Dog", id: 1},
         {name: "Ludo", type: "Parrot", id: 2},
         {name: "Rocky", type: "Iguana", id: 3}
@@ -35,7 +35,9 @@ function ArraysEx(){
        <button onClick = {()=> addColor("Green")}>
                Green
            </button>
-       <button onClick = {()=> addColor("Purple")}>Purple</button>
+       <button onClick = {()=> addColor("Purple")}>
+           Purple
+           </button>
        </section>
        <section>
             <table>
@@ -45,7 +47,7 @@ function ArraysEx(){
                     <th>Action</th>
                 </tr>
                 <tbody className="Pets-row">
-                    {pets.map((pet, i)=> <tr key = {i}>
+                    {pets.map((pet, i)=> <tr key = {pet.id}>
                         <td>{pet.name}</td> 
                         <td>{pet.type}</td>
                         <td><button onClick = {() => setPets(prev => [...prev.slice(0,i), ... prev.slice(i +1)])}>Delete</button></td>
